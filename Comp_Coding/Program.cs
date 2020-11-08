@@ -6,8 +6,8 @@ namespace Comp_Coding
     {
         static void Main(string[] args)
         {
-            First_Last_PositionOfElement_inSortedArray f = new First_Last_PositionOfElement_inSortedArray();
-            f.SearchRange(new int[] { 4, 4, 6, 7, 9, 9, 15 }, 9);
+            SearchInsertPosition s = new SearchInsertPosition();
+            s.SearchInsert(new int[] { 1, 3, 5, 6 }, 7);
         }
     }
 }
