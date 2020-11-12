@@ -6,8 +6,8 @@ namespace Comp_Coding
     {
         static void Main(string[] args)
         {
-            SearchInsertPosition s = new SearchInsertPosition();
-            s.SearchInsert(new int[] { 1, 3, 5, 6 }, 7);
+            FindRightInterval f = new FindRightInterval();
+            f.FindRightInterval1(new int[][] { new int[] { 4, 5 }, new int[] { 2, 3 }, new int[] { 1, 2 } });
         }
     }
 }
