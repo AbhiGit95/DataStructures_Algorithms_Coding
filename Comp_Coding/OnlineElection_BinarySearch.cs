@@ -4,13 +4,19 @@ using System.Text;
 
 namespace Comp_Coding
 {
-    //Will work but algorithm is slow. Can come up with a better solution.
-    public class TopVotedCandidate
+    class OnlineElection_BinarySearch
     {
         Dictionary<int, int> count;
         Dictionary<int, int> time_vote; int max_time = 0;
-        public TopVotedCandidate(int[] persons, int[] times)
+        int[] t_copy;
+        public OnlineElection_BinarySearch(int[] persons, int[] times)
         {
+            t_copy = new int[times.Length];
+            for (int i = 0; i < times.Length; i++)
+            {
+                t_copy[i] = times[i];
+            }
+
             count = new Dictionary<int, int>();
             time_vote = new Dictionary<int, int>();
             int max = 0; int prev_time = 0; int prev_winner = -1; max_time = times[times.Length - 1];
@@ -30,25 +36,16 @@ namespace Comp_Coding
 
                 if (count[persons[i]] >= max)
                 {
-                    while (prev_time < times[i])
-                    {
-                        time_vote.Add(prev_time, prev_winner);
-                        prev_time += 1;
-                    }
+                    time_vote.Add(times[i], persons[i]);
                     prev_winner = persons[i];
-                    time_vote.Add(prev_time, prev_winner);
-                    prev_time += 1;
                     max = count[persons[i]];
-                    
                 }
+
                 else
                 {
-                    while (prev_time <= times[i])
-                    {
-                        time_vote.Add(prev_time, prev_winner);
-                        prev_time += 1;
-                    }
+                    time_vote.Add(times[i], prev_winner);
                 }
+
             }
         }
 
@@ -57,8 +54,32 @@ namespace Comp_Coding
             if (time_vote.ContainsKey(t))
                 return time_vote[t];
 
-            else 
+            else if (t > max_time)
                 return time_vote[max_time];
+
+            else
+            {
+                int index = BinarySearch(t_copy, 0, t_copy.Length - 1, t);
+                return time_vote[index];
+            }
+        }
+
+        public int BinarySearch(int[] times, int start, int end, int target)
+        {
+            if (start > end)
+            {
+                return times[end];
+            }
+
+            int mid = start + (end - start) / 2;
+            if (times[mid] == target)
+                return times[mid];
+
+            else if (times[mid] > target)
+                return BinarySearch(times, start, mid - 1, target);
+
+            else
+                return BinarySearch(times, mid + 1, end, target);
         }
     }
 }
