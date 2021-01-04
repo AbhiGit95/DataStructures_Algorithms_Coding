@@ -9,49 +9,35 @@ namespace Comp_Coding
     {
         public int MinMeetingRooms(int[][] intervals)
         {
-            Array.Sort(intervals, new RoomSorter());
-            Stack<(int, int)> stack = new Stack<(int, int)>();
+            int n = intervals.Length;
+            int[] start_time = new int[n];
+            int[] end_time = new int[n];
+
+            for(int i = 0; i < n; i++)
+            {
+                start_time[i] = intervals[i][0];
+                end_time[i] = intervals[i][1];
+            }
+
+            Array.Sort(start_time);
+            Array.Sort(end_time);
 
             int rooms = 0;
-
-            foreach(int[]l in intervals)
+            int start = 0; int end = 0;
+            while(start < n)
             {
-                if(stack.Count == 0)
-                {
-                    stack.Push((l[0], l[1]));
+                if (start_time[start] < end_time[end])
                     rooms += 1;
-                }
-
                 else
                 {
-                    if ( l[1] < stack.Peek().Item2)
-                    {
-                        rooms += 1;
-                    }
-
-                    else if(l[0] < stack.Peek().Item2 && l[1] > stack.Peek().Item2)
-                    {
-                        rooms += 1;
-                        stack.Push((l[0], l[1]));
-                    }
-                    else
-                    {
-                        stack.Push((l[0], l[1]));
-                    }
+                    end += 1;
                 }
+
+                start += 1;
             }
+
             return rooms;
         }
 
-        class RoomSorter : IComparer<int[]>
-        {
-            public int Compare(int[]x, int[]y)
-            {
-                if (x[0] == y[0])
-                    return x[1].CompareTo(y[1]);
-                else
-                    return x[0].CompareTo(y[0]);
-            }
-        }
     }
 }
