@@ -7,6 +7,14 @@ namespace Comp_Coding
     {
         static void Main(string[] args)
         {
+            Count_of_Smaller_Numbers_After_Self cs = new Count_of_Smaller_Numbers_After_Self();
+            cs.CountSmaller(new int[] { -1, -1 });
+
+            Palindromic_Substrings ps = new Palindromic_Substrings();
+            ps.CountSubstrings("aaaaa");
+
+            SubDomainVisitCount sd = new SubDomainVisitCount();
+            sd.SubdomainVisits(new string[] { "9001 discuss.leetcode.com" });
 
             UndergroundSystem ug = new UndergroundSystem();
             ug.CheckIn(45, "Leyton", 3); ug.CheckIn(32, "Paradise", 8); ug.CheckIn(27, "Leyton", 10); ug.CheckOut(45, "Waterloo", 15); ug.CheckOut(27, "Waterloo", 20); ug.CheckOut(32, "Cambridge", 22);
