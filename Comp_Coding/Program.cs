@@ -7,8 +7,19 @@ namespace Comp_Coding
     {
         static void Main(string[] args)
         {
-            Count_of_Smaller_Numbers_After_Self cs = new Count_of_Smaller_Numbers_After_Self();
-            cs.CountSmaller(new int[] { -1, -1 });
+            MissingRanges mr = new MissingRanges();
+            mr.FindMissingRanges(new int[] { 1,2 }, 0, 9);
+
+            List<int> lst = new List<int>() { 1, 2, 3, 4 };
+            IEnumerator<int> enumerator = lst.GetEnumerator();
+            PeekingIterator pk = new PeekingIterator(enumerator); pk.HasNext(); pk.Peek(); pk.Peek(); pk.Next(); pk.Next(); pk.Peek(); pk.Peek();
+            pk.Next(); pk.HasNext(); pk.Peek(); pk.HasNext(); pk.Next(); pk.HasNext();
+
+            ReverseParentheses rp = new ReverseParentheses();
+            rp.ReverseParentheses_func("(u(love)i)");
+
+            Put_Boxes_Into_the_Warehouse_II p2 = new Put_Boxes_Into_the_Warehouse_II();
+            p2.MaxBoxesInWarehouse(new int[] { 1, 2, 2, 3, 4 }, new int[] { 3, 4, 1, 2 });
 
             Palindromic_Substrings ps = new Palindromic_Substrings();
             ps.CountSubstrings("aaaaa");
