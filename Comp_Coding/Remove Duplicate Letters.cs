@@ -8,21 +8,63 @@ namespace Comp_Coding
     {
         public string RemoveDuplicateLetters(string s)
         {
-            int[] char_Map = new int[26];
+            int[] charMap = new int[26];
+            int n = s.Length;
+            bool[] flag = new bool[26];
 
-            foreach(char c in s)
+            for (int i = 0; i < n; i++)
             {
-                char_Map[c - 'a'] += 1;
+                charMap[s[i] - 'a'] += 1;
             }
 
-            int unique_char = 0;
-            for(int i = 0; i < 26; i++)
+            Stack<char> stack = new Stack<char>();
+
+            for (int i = 0; i < s.Length; i++)
             {
-                if (char_Map[i] > 0)
-                    unique_char += 1;
+                if (stack.Count == 0)
+                {
+                    stack.Push(s[i]);
+                    flag[s[i] - 'a'] = true;
+                    charMap[s[i] - 'a'] -= 1;
+                }
+
+                else
+                {
+                    while (stack.Count > 0 && stack.Peek() > s[i] && charMap[stack.Peek() - 'a'] >= 1 && flag[stack.Peek() - 'a'] && !flag[s[i] -'a'])
+                    {
+                    
+                       var temp = stack.Pop();
+                       flag[temp - 'a'] = false;
+                            
+                    }
+
+                    if (!flag[s[i] - 'a'])
+                    {
+                        stack.Push(s[i]);
+                        flag[s[i] - 'a'] = true;
+                    }
+                    charMap[s[i] - 'a'] -= 1;
+                }
+
             }
 
-            return null;
+            StringBuilder sb = new StringBuilder();
+            Stack<char> stack2 = new Stack<char>();
+
+            while (stack.Count > 0)
+            {
+                if (stack2.Count == 0)
+                {
+                    stack2.Push(stack.Pop());
+                }
+
+                sb.Append(stack.Pop());
+            }
+
+            char[] arr = sb.ToString().ToCharArray();
+            Array.Reverse(arr);
+
+            return new string(arr);
         }
     }
 }
