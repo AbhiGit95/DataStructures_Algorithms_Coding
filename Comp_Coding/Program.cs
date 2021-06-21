@@ -7,6 +7,15 @@ namespace Comp_Coding
     {
         static void Main(string[] args)
         {
+            Least_Number_of_Unique_Integers_after_K_Removals lk = new Least_Number_of_Unique_Integers_after_K_Removals();
+            lk.FindLeastNumOfUniqueInts(new int[] { 4, 3, 1, 1, 3, 3, 2 }, 3);
+
+            Maximize_Sum_Of_Array_After_K_Negations mks = new Maximize_Sum_Of_Array_After_K_Negations();
+            mks.LargestSumAfterKNegations(new int[] { -2, 9, 9, 8, 4 }, 5);
+
+            Check_if_All_the_Integers_in_a_Range_Are_Covered chk = new Check_if_All_the_Integers_in_a_Range_Are_Covered();
+            chk.IsCovered(new int[][] { new int[] { 3, 4 }, new int[] { 1, 2 }, new int[] { 5, 6 } }, 2, 5);
+
             ExclusiveTimeOfFunctions ecf = new ExclusiveTimeOfFunctions();
             ecf.ExclusiveTime(1, new List<string>() { "0:start:0", "0:start:2", "0:end:5", "0:start:6", "0:end:6", "0:end:7" });
 
